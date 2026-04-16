@@ -9,41 +9,40 @@
     :root {
       --ink: #2b2f2a;
       --muted: #5a645b;
-      --paper: #f6f4ef;
       --accent: #6b7f5a;
-      --card: #ffffff;
+      --card: rgba(255,255,255,0.85);
     }
 
     body {
       margin: 0;
       font-family: "Georgia", serif;
-      background: var(--paper);
       color: var(--ink);
       line-height: 1.7;
+
+      /* soft linen / paper feel */
+      background-color: #f6f3ed;
+      background-image:
+        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 20px 20px, 40px 40px;
+      background-position: 0 0, 10px 10px;
     }
 
     header {
-      padding: 80px 20px 60px;
       text-align: center;
+      padding: 70px 20px 40px;
     }
 
-    header h1 {
-      font-size: 2.6rem;
+    h1 {
       margin: 0;
+      font-size: 2.4rem;
       letter-spacing: 0.5px;
     }
 
-    header p {
-      margin-top: 12px;
+    .subtitle {
       color: var(--muted);
       font-style: italic;
-    }
-
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: var(--accent);
-      margin: 30px auto;
+      margin-top: 10px;
     }
 
     .container {
@@ -52,70 +51,70 @@
       padding: 0 20px 80px;
     }
 
-    .intro {
+    .lang-toggle {
       text-align: center;
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 60px;
+      margin-top: 20px;
+    }
+
+    button.lang {
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      padding: 6px 12px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .section {
+      margin-top: 50px;
     }
 
     h2 {
-      font-weight: normal;
       color: var(--accent);
-      margin-top: 60px;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 18px;
+      font-weight: normal;
+      margin-bottom: 15px;
     }
 
     .card {
       background: var(--card);
-      padding: 22px;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      backdrop-filter: blur(2px);
     }
 
-    .card h3 {
-      margin-top: 0;
-      font-weight: normal;
-      color: var(--ink);
-    }
-
-    .meta {
+    .muted {
       color: var(--muted);
-      margin-top: 8px;
-      font-size: 0.95rem;
     }
 
-    .philosophy {
-      margin-top: 20px;
-      padding: 25px;
-      border-left: 2px solid var(--accent);
-      color: var(--muted);
-      background: rgba(255,255,255,0.6);
+    .hidden {
+      display: none;
+    }
+
+    .booking {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 30px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      margin-top: 10px;
+      font-size: 1rem;
     }
 
     footer {
       text-align: center;
-      padding: 50px 20px;
       color: var(--muted);
+      padding: 40px 20px;
       font-size: 0.9rem;
-    }
-
-    .contact {
-      margin-top: 40px;
-      text-align: center;
-      padding: 30px;
-      background: white;
-      border-radius: 12px;
-    }
-
-    .contact a {
-      color: var(--accent);
-      text-decoration: none;
     }
   </style>
 </head>
@@ -124,92 +123,117 @@
 
 <header>
   <h1>L’art de Laine L’eau</h1>
-  <p>The Way of Wool & Water</p>
-  <div class="divider"></div>
-  <p>Home & Textile Ecology · Consulting · Workshops</p>
+  <div class="subtitle">The Way of Wool & Water · Home Ecology Practice</div>
+
+  <div class="lang-toggle">
+    <button class="lang" onclick="setLang('en')">EN</button>
+    <button class="lang" onclick="setLang('fr')">FR</button>
+  </div>
 </header>
 
 <div class="container">
 
-  <p class="intro">
-    A practice rooted in the belief that health is shaped by our environment:
-    the fibres we wear, the air in our homes, the materials we sleep in,
-    and the substances we bring into daily life.
-  </p>
+  <!-- ENGLISH -->
+  <div id="en">
 
-  <h2>Practice</h2>
-  <div class="philosophy">
-    Health is not only what we put into the body, but what surrounds it.
-    This work explores the relationship between materials, home environments,
-    and everyday rituals — with attention to natural fibres, non-toxic systems,
-    and Canadian-made sourcing.
-  </div>
-
-  <h2>Services</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Natural Product Sourcing</h3>
-      <div class="meta">
-        Canadian-made natural products for home, cleaning, and textiles.
-      </div>
-      <div class="meta"><strong>$40 / hour</strong></div>
+    <div class="section">
+      <h2>Practice</h2>
+      <p class="muted">
+        Health is shaped by our environment: what we wear, what we clean with,
+        and the materials we live with daily.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>Green Cleaning Practice</h3>
-      <div class="meta">
-        Cleaning services using non-toxic, carefully selected materials.
+    <div class="section">
+      <h2>Services</h2>
+
+      <div class="card">
+        <strong>Natural Product Sourcing</strong>
+        <p class="muted">$40 / hour · Canadian-made natural products for home and textiles.</p>
       </div>
-      <div class="meta"><strong>$75 / hour</strong></div>
-    </div>
 
-  </div>
-
-  <h2>Ateliers</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Home Textiles</h3>
-      <div class="meta">
-        Wreaths, baskets, wool tapestry, macramé.
+      <div class="card">
+        <strong>Green Cleaning</strong>
+        <p class="muted">$75 / hour · Non-toxic, ecology-based cleaning practice.</p>
       </div>
     </div>
 
-    <div class="card">
-      <h3>Natural Fibre Clothing</h3>
-      <div class="meta">
-        Fleece to shawl, kitchen dyeing, material transformation.
-      </div>
+    <div class="section">
+      <h2>Ateliers</h2>
+
+      <div class="card">Wool tapestry</div>
+      <div class="card">Natural fibre clothing & kitchen dyeing</div>
+      <div class="card">Drop spindle & wheel spinning</div>
+      <div class="card">Sliding scale & group options</div>
     </div>
 
-    <div class="card">
-      <h3>Spinning Practice</h3>
-      <div class="meta">
-        Drop spindle and wheel spinning rhythms.
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Flexible Access</h3>
-      <div class="meta">
-        Sliding scale, group sessions, and budget-based planning.
-      </div>
+    <div class="booking">
+      <h2>Book a Session</h2>
+      <p class="muted">One-on-one work based on your needs and budget.</p>
+      <a class="btn" href="mailto:your@email.com?subject=Booking%20Request">
+        Request Booking
+      </a>
     </div>
 
   </div>
 
-  <div class="contact">
-    <h2>Contact</h2>
-    <p>One-on-one planning available based on your needs and budget.</p>
-    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+  <!-- FRENCH -->
+  <div id="fr" class="hidden">
+
+    <div class="section">
+      <h2>Pratique</h2>
+      <p class="muted">
+        La santé est façonnée par notre environnement : ce que nous portons,
+        ce que nous utilisons pour nettoyer, et les matériaux qui nous entourent.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Services</h2>
+
+      <div class="card">
+        <strong>Recherche de produits naturels</strong>
+        <p class="muted">$40 / heure · Produits canadiens naturels pour la maison et les textiles.</p>
+      </div>
+
+      <div class="card">
+        <strong>Nettoyage écologique</strong>
+        <p class="muted">$75 / heure · Pratique de nettoyage non toxique et consciente.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Ateliers</h2>
+
+      <div class="card">Tapisseries de laine</div>
+      <div class="card">Vêtements en fibres naturelles & teintures maison</div>
+      <div class="card">Filage au fuseau et à la roue</div>
+      <div class="card">Tarification flexible et groupes</div>
+    </div>
+
+    <div class="booking">
+      <h2>Réserver une séance</h2>
+      <p class="muted">Travail individuel selon vos besoins et votre budget.</p>
+      <a class="btn" href="mailto:your@email.com?subject=Demande%20de%20réservation">
+        Demander une réservation
+      </a>
+    </div>
+
   </div>
 
 </div>
 
 <footer>
-  © 2026 L’art de Laine L’eau · Studio Practice
+  © 2026 L’art de Laine L’eau
 </footer>
+
+<script>
+  function setLang(lang) {
+    document.getElementById('en').classList.add('hidden');
+    document.getElementById('fr').classList.add('hidden');
+    document.getElementById(lang).classList.remove('hidden');
+  }
+</script>
 
 </body>
 </html>
